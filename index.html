@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Fake hacking screen</title>
+	<style>
+		body, html {
+			padding: 0;
+			margin: 0;
+			margin-bottom: 100px;
+		}
+		body {
+			background-color: black;
+			color: green;
+			font-family: Consolas, Lucida Console,Lucida Sans Typewriter,monaco,Bitstream Vera Sans Mono,monospace; 
+		}
+		p {
+			margin: 13px;
+		}
+	</style>
+</head>
+<body>
+	Microsoft Windows [Version 6.1.7601]
+	Copyright (c) 2009 Microsoft Corporation. All Rights reserved.
+	<p id="intro">>>> Start randomly typing to fake hack!</p>
+	<span id="outs"></span>
+</body>
+</html>
+<script type="text/javascript">
+	function hack() {
+		var p = document.createElement("p");
+		var outputs = ["C:/Windows/isaboo.co.uk> nmap 167.26.281",
+		"C:/Windows/isaboo.co.uk>  dir ls/hp lt@7892%67<br/><br>List of Directories ls/hp lt@7892%67:<br><br>3 diectories:<br><br>1: /isaboo-data | 4 contents | 64.5kb<br>2: /isaboo-site | 1000 contents | 1.752gb<br>3: /isaboo-cache | Empty | 0b<br><br>",
+		">altC:/?/%/{username}/albc%at<br><br>2 error(s) no results found<br><br>1: No results for ab92<br><br>2: Missed syntax 'al5<b>{34}</b><br><br>' ",
+		"C:/Windows/isaboo.co.uk>  scif brew https://www.isaboo.co.uk",
+		"include http:port80 assign var weblink",
+		">>> initiate ${isaboo.co.uk}:80 port enable/true",
+		"C:/Windows/isaboo.co.uk>  alt:id@alehewuff787893232",
+		"hu78389Name:558:8839:839.3883@isaboo.co.uk/400@jikn"];
+		var random = Math.floor(Math.random() * outputs.length);
+		var output = outputs[random];
+		p.innerHTML = output;
+		document.getElementById('outs').appendChild(p);
+		document.getElementById('intro').innerHTML = ""
+		window.scrollTo(0,document.body.scrollHeight);
+	}
+	window.addEventListener("keyup", function() {
+		window.setTimeout(hack, 50, false);
+	}, false)
+</script>
