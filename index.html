@@ -5,39 +5,50 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Fake hacking screen</title>
 	<style>
-		body, html {
-			padding: 0;
-			margin: 0;
-			margin-bottom: 100px;
-		}
-		body {
-			background-color: black;
-			color: green;
-			font-family: Consolas, Lucida Console,Lucida Sans Typewriter,monaco,Bitstream Vera Sans Mono,monospace; 
-		}
-		p {
-			margin: 13px;
-		}
-	</style>
+	body, html {
+		padding: 0;
+		margin: 0;
+		margin-bottom: 100px;
+	}
+	body {
+		background-color: black;
+		color: green;
+		font-family: Consolas, Lucida Console,Lucida Sans Typewriter,monaco,Bitstream Vera Sans Mono,monospace; 
+	}
+	p {
+		margin: 13px;
+	}
+</style>
 </head>
 <body>
-	Microsoft Windows [Version 6.1.7601]
+	Microsoft Windows [Version 6.1.7601]<br>
 	Copyright (c) 2009 Microsoft Corporation. All Rights reserved.
-	<p id="intro">>>> Start randomly typing to fake hack!</p>
+	<p id="intro">>>> Start randomly typing to fake hack!<br>>>> <i>Note: </i>To use, you must be using a <i>physical keyboard</i> (such you would find on a laptop or iPad accessory)</p>
 	<span id="outs"></span>
 </body>
 </html>
 <script type="text/javascript">
+	var app = this;
+	app.hasKeyboard = false;
+	this.keyboardPress = function() {
+		app.hasKeyboard = true;
+		window.removeEventListener("keydown", app.keyboardPress);
+	}
+	if(app.hasKeyboard = false) {
+		document.getElementById('intro').innerText = ">>> Please switch to a device which has a physical keyboard, or connect your keyboard accessory (e.g. Surface Keyboard, iPad Magic Keyboard)"
+	}
+	window.addEventListener("keydown", app.keyboardPress, false);
 	function hack() {
 		var p = document.createElement("p");
-		var outputs = ["C:/Windows/isaboo.co.uk> nmap 167.26.281",
-		"C:/Windows/isaboo.co.uk>  dir ls/hp lt@7892%67<br/><br>List of Directories ls/hp lt@7892%67:<br><br>3 diectories:<br><br>1: /isaboo-data | 4 contents | 64.5kb<br>2: /isaboo-site | 1000 contents | 1.752gb<br>3: /isaboo-cache | Empty | 0b<br><br>",
-		">altC:/?/%/{username}/albc%at<br><br>2 error(s) no results found<br><br>1: No results for ab92<br><br>2: Missed syntax 'al5<b>{34}</b><br><br>' ",
-		"C:/Windows/isaboo.co.uk>  scif brew https://www.isaboo.co.uk",
+		var outputs = ["C:/Windows/System32> nmap 167.26.281",
+		"C:/Windows/System32>  dir ls/hp lt@7892%67<br/><br>List of Directories ls/hp lt@7892%67:<br> <br> 3 diectories:<br><br>1: /isaboo-data | 4 contents | 64.5kb<br>2: /isaboo-site | 1000 contents | 1.752gb<br>3: /isaboo-cache | Empty | 0b<br><br>",
+		">altC:/?/%/{username}/albc%at<br><br>2 error(s) no results found<br><br>1: No results for ab92<br><br>2: Missed syntax 'al5<b>{34}</b> <br> <br>' ",
+		"C:/Windows/System32>  scif brew https://www.isaboo.co.uk",
 		"include http:port80 assign var weblink",
-		">>> initiate ${isaboo.co.uk}:80 port enable/true",
-		"C:/Windows/isaboo.co.uk>  alt:id@alehewuff787893232",
-		"hu78389Name:558:8839:839.3883@isaboo.co.uk/400@jikn"];
+		">>> initiate ${localhost}:80 port enable/true",
+		"C:/Windows/System32>  alt:id@alehewuff787893232",
+		"hu78389Name:558:8839:839.3883@System32/400@jikn",
+		"Enter Command >>> search()<br><br>1 Results:<br><br>1   |  /isaboo.co.uk | 1 match ('Welcome to <i>isaboo.co.uk</i>! Here yo<i>...<i/>')",];
 		var random = Math.floor(Math.random() * outputs.length);
 		var output = outputs[random];
 		p.innerHTML = output;
@@ -45,7 +56,19 @@
 		document.getElementById('intro').innerHTML = ""
 		window.scrollTo(0,document.body.scrollHeight);
 	}
+	var firstkeystroke = true;
 	window.addEventListener("keyup", function() {
-		window.setTimeout(hack, 50, false);
-	}, false)
+		if(firstkeystroke == true) {
+			var elem = document.documentElement;
+			if (elem.requestFullscreen) {
+				elem.requestFullscreen();
+			} else if (elem.webkitRequestFullscreen) { /* Safari */
+				elem.webkitRequestFullscreen();
+			} else if (elem.msRequestFullscreen) { /* IE11 */
+				elem.msRequestFullscreen();
+			}
+			firstkeystroke = false;
+		}
+		window.setTimeout(hack, 1, false);
+	}, false);
 </script>
